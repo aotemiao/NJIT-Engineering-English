@@ -18,7 +18,7 @@ unit_url_tmp = [
 
 
 class English():
-    def __init__(self, username, password, term, unit=None, auto=True, browser=None, shot=False, info=False):
+    def __init__(self, username, password, term=2, unit=None, auto=True, browser=None, shot=False, info=False):
         if (term==1):
             unit_url_tmp = [
                 "http://202.119.161.130/StudentSTS/unitnav.aspx?UnitTreeid=4612",
@@ -86,7 +86,8 @@ class English():
              "document.getElementById('ctl00_ContentPlaceHolder1_UcLogin1_ibtn_ok').click();"
         self.browser.execute_script(js)
         self.browser.implicitly_wait(2)  # 等待跳转
-        self.browser.find_element_by_xpath('//a[@style="color:blue;"]').click()  # 进入课堂
+        classes = self.browser.find_elements_by_xpath('//a[@style="color:blue;"]')  # 进入课堂
+        classes[-1].click()  # 进入课堂
         self.browser.implicitly_wait(2)  # 等待跳转 进入到单元选择页面
         self.url_unit = self.browser.current_url  # 记录 unit页面的URL
 
